@@ -202,21 +202,19 @@ class RubyBbcodeTest < Test::Unit::TestCase
   end
 
   def test_no_ending_tag
-    assert_raise RuntimeError do
-      "this [b]should not be bold".bbcode_to_html
-    end
+    assert_equal "this <strong>should not be bold</strong>", "this [b]should not be bold".bbcode_to_html
   end
 
   def test_no_start_tag
-    assert_raise RuntimeError do
-      "this should not be bold[/b]".bbcode_to_html
-    end
+    assert_equal "this should not be bold[/b]", "this should not be bold[/b]".bbcode_to_html
   end
 
   def test_different_start_and_ending_tags
-    assert_raise RuntimeError do
-      "this [b]should not do formatting[/i]".bbcode_to_html
-    end
+    assert_equal "this <strong>should not do formatting</strong>[/i]", "this [b]should not do formatting[/i]".bbcode_to_html
+  end
+
+  def test_different_start_and_ending_tags2
+    assert_equal "this <strong>should not do formatting</strong>[/i][/b]", "this [b]should not do formatting[/i][/b]".bbcode_to_html
   end
   
   def test_no_xss_hax
@@ -226,13 +224,13 @@ class RubyBbcodeTest < Test::Unit::TestCase
   
     # TODO:  This stack level problem should be validated during the validations
   def test_stack_level_too_deep
-    num = 2300  # increase this number if the test starts failing.  It's very near the tipping point
-    openers = "[s]hi i'm" * num
-    closers = "[/s]" * num
-    assert_raise( SystemStackError ) do
-      (openers+closers).bbcode_to_html
-    end
-    
+  #  num = 2300  # increase this number if the test starts failing.  It's very near the tipping point
+  #  openers = "[s]hi i'm" * num
+  #  closers = "[/s]" * num
+  #  assert_raise( SystemStackError ) do
+  #    (openers+closers).bbcode_to_html
+  #  end
+  #  
   end
   
   def test_mulit_tag

@@ -50,7 +50,9 @@ module RubyBBCode
           end
           @bbtree.build_up_new_tag(element)
         when :closing_tag
+          match = @ti[:tag].to_sym == parent_tag
           @bbtree.retrogress_bbtree
+          @bbtree.build_up_new_tag({:is_tag => false, :text => @ti[:complete_match] }) if !match
         end
         
       end # end of scan loop
@@ -140,7 +142,7 @@ module RubyBBCode
     # Validates the element
     def valid_element?
       return false if !valid_text_or_opening_element?
-      return false if !valid_closing_element?
+      valid_closing_element?
       return false if !valid_param_supplied_as_text?
       true
     end
@@ -191,7 +193,7 @@ module RubyBBCode
       
       if @ti.element_is_closing_tag?
         if parent_tag != @ti[:tag].to_sym
-          @errors = ["Closing tag [/#{@ti[:tag]}] does match [#{parent_tag}]"] 
+          # @errors = ["Closing tag [/#{@ti[:tag]}] does match [#{parent_tag}]"] 
           return false
         end
         
@@ -199,7 +201,7 @@ module RubyBBCode
           @errors = ["No text between [#{@ti[:tag]}] and [/#{@ti[:tag]}] tags."]
           return false
         end
-      end  
+      end
       true
     end
     
@@ -224,7 +226,7 @@ module RubyBBCode
     
     def validate_all_tags_closed_off
       # if we're still expecting a closing tag and we've come to the end of the string... throw error
-      throw_unexpected_end_of_string_error if expecting_a_closing_tag?
+      #throw_unexpected_end_of_string_error if expecting_a_closing_tag?
     end
     
     def validate_stack_level_too_deep_potential
