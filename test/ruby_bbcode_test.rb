@@ -221,6 +221,11 @@ class RubyBbcodeTest < Test::Unit::TestCase
     expected = "<a href=\"http://www.google.com&quot; onclick=\&quot;javascript:alert\">google</a>"
     assert_equal expected, '[url=http://www.google.com" onclick="javascript:alert]google[/url]'.bbcode_to_html
   end
+
+  def test_extra
+    # Should not raise
+    '[b][color=#ff0000][/b][url=http://1.png][img]http://1m.png[/img][/url]'.bbcode_to_html
+  end
   
     # TODO:  This stack level problem should be validated during the validations
   def test_stack_level_too_deep

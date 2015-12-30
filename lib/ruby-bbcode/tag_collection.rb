@@ -56,7 +56,7 @@ module RubyBBCode
       end
       
       def inlay_between_text!
-        @opening_html.gsub!('%between%',@node[:between]) if between_text_goes_into_html_output_as_param?  # set the between text to where it goes if required to do so...
+        @opening_html.gsub!('%between%', @node[:between] || '') if between_text_goes_into_html_output_as_param?  # set the between text to where it goes if required to do so...
       end
       
       def inlay_inline_params!
@@ -77,7 +77,7 @@ module RubyBBCode
       end
       
       def inlay_closing_html!
-        @closing_html.gsub!('%between%',@node[:between]) if @tag_definition[:require_between]
+        @closing_html.gsub!('%between%', @node[:between] || '') if @tag_definition[:require_between]
       end
       
       def remove_unused_tokens!
