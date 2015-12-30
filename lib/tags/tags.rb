@@ -54,7 +54,6 @@ module RubyBBCode
         :html_open => '<a href="%url%">%between%', :html_close => '</a>',
         :description => 'Link to another page',
         :example => '[url]http://www.google.com/[/url].',
-        :only_allow => [],
         :require_between => true,
         :allow_tag_param => true, :allow_tag_param_between => true,
         :tag_param => /^((((http|https|ftp):\/\/)|\/).+)$/, :tag_param_tokens => [{ :token => :url }],

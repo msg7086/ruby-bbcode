@@ -198,8 +198,9 @@ module RubyBBCode
         end
         
         if tag[:require_between] == true and @bbtree.current_node[:between].nil?
-          @errors = ["No text between [#{@ti[:tag]}] and [/#{@ti[:tag]}] tags."]
-          return false
+          #@errors = ["No text between [#{@ti[:tag]}] and [/#{@ti[:tag]}] tags."]
+          #return false
+          @bbtree.current_node[:between] = ''
         end
       end
       true
