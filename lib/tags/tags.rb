@@ -66,7 +66,7 @@ module RubyBBCode
         :tag_param => /(.*)/,
         :tag_param_tokens => [{:token => :author, :prefix => '<strong>', :postfix => ' wrote:</strong>'}]},
       :size => {
-        :html_open => '<span style="font-size: %size%px;">', :html_close => '</span>',
+        :html_open => '<span style="font-size: %size%px;" class="size-%size%">', :html_close => '</span>',
         :description => 'Change the size of the text',
         :example => '[size=32]This is 32px[/size]',
         :allow_tag_param => true, :allow_tag_param_between => false,
