@@ -175,6 +175,10 @@ module RubyBBCode
     end
     
     def validate_constraints_on_child
+      ##
+      return true
+      ##
+
       # TODO:  Rename this if statement to #validate_constraints_on_child
       if within_open_tag? and parent_has_constraints_on_children?
         # Check if the found tag is allowed
@@ -194,7 +198,7 @@ module RubyBBCode
       if @ti.element_is_closing_tag?
         if parent_tag != @ti[:tag].to_sym
           # @errors = ["Closing tag [/#{@ti[:tag]}] does match [#{parent_tag}]"] 
-          return false
+          # return false
         end
         
         if tag[:require_between] == true and @bbtree.current_node[:between].nil?
