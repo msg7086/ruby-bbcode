@@ -101,7 +101,23 @@ module RubyBBCode
           :youtube,
           :vimeo
         ]
-      }
+      },
+      :h1 => {
+        :html_open => '<h1>', :html_close => '</h1>',
+        :description => 'Header1',
+        :example => 'This is [h1]header1[/h1].'},
+      :h2 => {
+        :html_open => '<h2>', :html_close => '</h2>',
+        :description => 'Header2',
+        :example => 'This is [h2]header1[/h2].'},
+      :h3 => {
+        :html_open => '<h3>', :html_close => '</h3>',
+        :description => 'Header3',
+        :example => 'This is [h3]header1[/h3].'},
+      :h4 => {
+        :html_open => '<h4>', :html_close => '</h4>',
+        :description => 'Header4',
+        :example => 'This is [h4]header1[/h4].'}
     }
 
     def self.tag_list
